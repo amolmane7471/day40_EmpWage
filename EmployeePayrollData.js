@@ -20,8 +20,11 @@ class EmployeePayrollData{
     }
 
     set name(name){
-        console.log("Setting name");
-        this.Name = name;
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if(nameRegex.test(name))
+            this.Name = name;
+        else
+            throw 'Name is Incorrect';
     }
 
     get salary(){
@@ -56,7 +59,11 @@ class EmployeePayrollData{
 
 let employeePayrollData = new EmployeePayrollData(1, "Mark", 30000);
 console.log(employeePayrollData.toString());
+try{
 employeePayrollData.name = "john";
 console.log(employeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
 let newEmployeePayrollData = new EmployeePayrollData(1, "Teresa", 30000, "F", new Date());
 console.log(newEmployeePayrollData.toString());
