@@ -12,7 +12,11 @@ class EmployeePayrollData{
     }
 
     set id(id){
-        this.Id = id;
+        let idRegx = RegExp('^[1-9][0-9]*$');
+        if (idRegx.test(id))
+            this.Id = id;
+        else
+            throw 'incorrect id'
     }
 
     get name(){
@@ -32,14 +36,22 @@ class EmployeePayrollData{
     }
 
     set salary(salary){
-        this.Salary = salary;
+        let salaryRegx = RegExp('^[1-9][0-9]*$');
+        if (salaryRegx.test(salary))
+            this.Salary = salary;
+        else
+            throw 'incorrect salary'
     }
     get gender() {
         return this.Gender;
     }
 
     set gender(gender) {
-        this.Gender = gender;
+        let genderRegex = RegExp('^[F|M]$');
+        if (genderRegex.test(gender))
+            this.Gender = gender;
+        else
+             throw 'incorrect gender'
     }
 
     get startDate() {
@@ -57,13 +69,13 @@ class EmployeePayrollData{
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(1, "Mark", 30000);
-console.log(employeePayrollData.toString());
-try{
-employeePayrollData.name = "john";
-console.log(employeePayrollData.toString());
-}catch(e){
+try {
+    let employeePayrollData = new EmployeePayrollData(1, "Jeff", 5000000, "M", new Date());
+    console.log(employeePayrollData.toString());
+
+    let teresaPayrollData = new EmployeePayrollData(0, "Teresa", 50000, "F", new Date());
+    console.log(teresaPayrollData.toString());
+}
+catch (e) {
     console.error(e);
 }
-let newEmployeePayrollData = new EmployeePayrollData(1, "Teresa", 30000, "F", new Date());
-console.log(newEmployeePayrollData.toString());
